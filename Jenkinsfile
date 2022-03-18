@@ -4,6 +4,20 @@ node('local-node-mac') {
             checkout scm
         }
 
+
+        stage('SonarQube analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh "mvn clean package sonar:sonar"
+                }
+            }
+        }
+        stage("Quality gate") {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }
+
         stage('Start Testing'){
             sh "mvn clean verify"
         }
