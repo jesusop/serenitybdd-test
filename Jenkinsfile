@@ -5,7 +5,7 @@ node('local-node-mac') {
         }
         stage('SonarQube analysis') {
 
-                withSonarQubeEnv('SonarQube') {
+                withSonarQubeEnv('sonarqube') {
                     sh "mvn clean package sonar:sonar"
                 }
 
