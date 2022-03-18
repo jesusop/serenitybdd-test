@@ -1,5 +1,5 @@
 node('local-node-mac') {
-    try {
+
         stage('Clone repository') {
             checkout scm
         }
@@ -18,6 +18,8 @@ node('local-node-mac') {
                     }
             }
         }
+
+    try {
         stage('Start Testing'){
             sh "mvn clean verify"
         }
