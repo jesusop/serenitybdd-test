@@ -6,7 +6,7 @@ node('local-node-mac') {
         stage('SonarQube analysis') {
 
                 withSonarQubeEnv('SonarQube') {
-                    sh "./gradlew sonarqube"
+                    sh "mvn clean package sonar:sonar"
                 }
 
         }
